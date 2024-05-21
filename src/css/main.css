@@ -1,0 +1,126 @@
+html {
+  font-size: 16px;
+  line-height: 1.25;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.main {
+  height: 100svh;
+  width: 100svw;
+  overflow: hidden;
+}
+
+body {
+  height: 100svh;
+  width: 100svw;
+  overflow: hidden;
+}
+
+ul a{
+  color: aqua;
+}
+
+/* Index Page 
+------------------------- */
+
+.work-item__cover-img {
+  /* visibility: hidden; */
+}
+
+.hero,
+.works,
+.about,
+.contacts {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  /* display: none; */
+}
+
+
+.works {
+  top: 100svh;
+  /* !!!! */
+  z-index: 99; 
+}
+
+.about {
+  top: 100svh;
+}
+
+.contacts {
+  top: 100svh;
+}
+
+.works-canvas {
+  z-index: 100;
+}
+
+canvas {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.work-item__cover-img {
+  /* visibility: hidden; */
+}
+
+.staic-title-box_about {
+  visibility: hidden;
+}
+
+.staic-title-box_contacts {
+  visibility: hidden;
+}
+
+.staic-title-box_works {
+  visibility: hidden;
+}
+
+.showcases {
+  width: 100%;
+  height: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  
+}
+
+.box.showcase-spaser {
+  width: 0;
+}
+
+.gallery {
+  overflow: hidden;
+}
+
+.showcase {
+  max-height: 393px;
+}
+
+.showcase-content {
+  z-index: 100;
+}
+
+.showcase-link {
+  z-index: 200;
+}
+
+.container_showcase {
+
+}
+
+.showcase-details {
+
+}
+
+.gallery {
+  height: 320px;
+}
