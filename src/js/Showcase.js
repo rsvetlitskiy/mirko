@@ -10,7 +10,7 @@ gsap.registerPlugin(Observer);
  *
  * @param {*} option 
  */
-export class ShowcaseDetails {
+export class Showcase {
   constructor() {
     this.showcaseItem = null;
   }

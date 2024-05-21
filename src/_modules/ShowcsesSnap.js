@@ -1,7 +1,7 @@
 import { gsap } from "gsap";
 import { Observer } from "gsap/Observer";
-import { DOM } from "./domElements";
-import { utils } from "./utils";
+import { DOM } from "../js/domElements";
+import { utils } from "../js/utils";
 import { Hero } from "./components/Hero";
 //import Router from "./router";
 

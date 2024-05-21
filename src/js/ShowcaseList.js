@@ -7,6 +7,11 @@ import App from "./App";
 gsap.registerPlugin(Observer);
 
 export class ShowcaseList {
+
+  /**
+   * Display or hide showcase
+   * @param { string } option 
+   */
   display(option) {
     const isShow = option === "show";
     const isHide = option === "hide";
@@ -17,7 +22,7 @@ export class ShowcaseList {
         ease: "power4.inOut",
       },
       
-      onComplete: () => {console.log(App.currentState)}, 
+      onComplete: () => {}, 
     });
 
     if (isShow) {
@@ -33,17 +38,11 @@ export class ShowcaseList {
     }
   }
 
-  isAnimating = false;
-  showcaseTotal = DOM.showcaseItem.length;
-  curentY = 0;
-  curentIndex = 1;
-
   /**
-   * 
+   * Showcases snapscroll
    * @param {*} direction 
    * @returns 
    */
-  
   snap(direction) {
     const isNext = direction === "next";
     const isPrev = direction === "prev";

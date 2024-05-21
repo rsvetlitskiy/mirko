@@ -4,7 +4,7 @@ import { Router } from "./Router";
 import { Snap } from "./snapscroll";
 import App from "./App";
 import { ShowcaseList } from "./ShowcaseList";
-import { ShowcaseDetails } from "./ShowcaseDetails";
+import { Showcase } from "./Showcase";
 
 import {setDefault} from "./defaultStates";
 import {setShowcasesUrl} from "./showcaseUrls";
@@ -12,7 +12,7 @@ import {setShowcasesUrl} from "./showcaseUrls";
 gsap.registerPlugin(Observer);
 
 const showcaseList = new ShowcaseList;
-const showcaseDetails = new ShowcaseDetails;
+const showcase = new Showcase;
 
 /**
  * Initialization
@@ -35,17 +35,21 @@ const router = new Router({
 
 // About
 router.add(/about/, () => {
-  alert("about");
+  App.setState("about");
+
+  console.log(`App Stete: ${App.currentState}`);
 });
 
 // Contacts
 router.add(/contact/, () => {
-  alert("contact");
+  App.setState("contact");
+
+  console.log(`App Stete: ${App.currentState}`);
 });
 
 // Showcase details
 router.add(/works\/(.*)/, (slug) => {
-  //showcaseDetails.display("show");
+  App.setState("works");
 
   console.log(`Showcase: ${slug}`);
 });
@@ -54,38 +58,9 @@ router.add(/works\/(.*)/, (slug) => {
 router.add(/works/, () => {
   showcaseList.display("show");
   App.setState("works");
+
+  console.log(`App Stete: ${App.currentState}`);
 });
-
-
-/**
- * Reset default state
- */
-// const resetAll = () => {
-//   Showcases.display("hide");
-// }
-
-// Show works
-// DOM.navItemWorks.addEventListener("click", (event) => {
-//   //resetAll();
-
-//   //Showcases.display("show");
-//   //Router.setCurrentPage("works");
-
-//   event.preventDefault();
-// });
-
-// Show work details
-// DOM.showcaseItem.forEach(el => el.addEventListener('click', event => {
-//   console.log(event.currentTarget.dataset.slug);
-// }));
-
-// Show home
-// DOM.navItemHome.addEventListener("click", (event) => {
-//   //resetAll();
-//   //Router.setCurrentPage("home");
-//   event.preventDefault();
-// });
-
 
 /**
  * Snap scroll
@@ -96,22 +71,10 @@ Observer.create({
   type: "wheel, touch, pointer",
   wheelSpeed: -1,
   tolerance: 10,
-  onDown: () => {
-    //if (Router.currentPage === "home") {
-      snap.prev();
-    //}
-
-    // if (Router.currentPage === "works") {
-    //   Showcases.snap("prev");
-    // }
+  onDown: () => { 
+    snap.prev(); 
   },
-  onUp: () => {
-    //if (Router.currentPage === "home") {
-      snap.next();
-    //}
-
-    // if (Router.currentPage === "works") {
-    //   showcaseList.snap("next");
-    // }
+  onUp: () => { 
+    snap.next(); 
   },
 });
