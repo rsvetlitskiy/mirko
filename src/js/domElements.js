@@ -40,6 +40,7 @@ export const DOM = {
   // Showcases
   showcases: document.querySelector(".showcases"),
   showcasesContent: document.querySelector(".showcases-content"),
+  showcasesCollection: document.querySelector(".showcases-collection"),
 
   // Showcase
   showcaseItem: document.querySelectorAll(".showcase"),

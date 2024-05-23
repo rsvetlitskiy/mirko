@@ -1,15 +1,8 @@
-html {
-  font-size: 16px;
-  line-height: 1.25;
+@import url("./typography.css");
 
+html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-.main {
-  height: 100svh;
-  width: 100svw;
-  overflow: hidden;
 }
 
 body {
@@ -18,11 +11,13 @@ body {
   overflow: hidden;
 }
 
-ul a{
-  color: aqua;
+.main {
+  height: 100svh;
+  width: 100svw;
+  overflow: hidden;
 }
 
-/* Index Page 
+/* Home 
 ------------------------- */
 
 .work-item__cover-img {
@@ -37,13 +32,11 @@ ul a{
   top: 0;
   left: 0;
   overflow: hidden;
-  /* display: none; */
 }
 
 
 .works {
   top: 100svh;
-  /* !!!! */
   z-index: 99; 
 }
 
@@ -56,7 +49,7 @@ ul a{
 }
 
 .works-canvas {
-  z-index: 100;
+  z-index: 50;
 }
 
 canvas {
@@ -68,8 +61,12 @@ canvas {
 }
 
 .work-item__cover-img {
-  /* visibility: hidden; */
+
 }
+
+
+/* Showcases
+------------------------- */
 
 .staic-title-box_about {
   visibility: hidden;
@@ -93,34 +90,28 @@ canvas {
   
 }
 
-.box.showcase-spaser {
+.showcase {
+  
+}
+
+.showcase-details-info{
   width: 0;
 }
 
-.gallery {
+.showcase-details {
+  height: 0svh;
+}
+
+.showcase-gallery {
   overflow: hidden;
-}
-
-.showcase {
-  max-height: 393px;
-}
-
-.showcase-content {
-  z-index: 100;
+  height: 30svh;
 }
 
 .showcase-link {
   z-index: 200;
-}
-
-.container_showcase {
-
-}
-
-.showcase-details {
-
-}
-
-.gallery {
-  height: 320px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

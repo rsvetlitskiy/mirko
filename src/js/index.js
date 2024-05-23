@@ -20,8 +20,9 @@ const showcase = new Showcase;
 window.onload = () => {
   setDefault();
   setShowcasesUrl();
+  showcaseList.snapInit();
 
-  console.log(App.currentState);
+  console.log(App.currentState); // !!!!!!!!
   //router.navigate("works");
 };
 
@@ -49,7 +50,7 @@ router.add(/contact/, () => {
 
 // Showcase details
 router.add(/works\/(.*)/, (slug) => {
-  App.setState("works");
+  App.setState("showcase");
 
   console.log(`Showcase: ${slug}`);
 });
@@ -57,7 +58,7 @@ router.add(/works\/(.*)/, (slug) => {
 // Showcases list
 router.add(/works/, () => {
   showcaseList.display("show");
-  App.setState("works");
+  App.setState("showcaseList");
 
   console.log(`App Stete: ${App.currentState}`);
 });
@@ -71,10 +72,27 @@ Observer.create({
   type: "wheel, touch, pointer",
   wheelSpeed: -1,
   tolerance: 10,
-  onDown: () => { 
-    snap.prev(); 
+  onDown: () => {
+    // Home section
+    if (App.currentState == "home") {
+      snap.prev();
+    }
+
+    // Showcase list screen
+    if (App.currentState == "showcaseList") {
+      showcaseList.snap("prev")
+    }
   },
+
   onUp: () => { 
-    snap.next(); 
+    // Home section
+    if (App.currentState == "home") {
+      snap.next();
+    }
+
+    // Showcase list screen
+    if (App.currentState == "showcaseList") {
+      showcaseList.snap("next");
+    }
   },
 });

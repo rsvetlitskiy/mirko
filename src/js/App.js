@@ -5,7 +5,7 @@ class App {
 
   setState = (state) => {
     this.currentState = state;
-  } 
+  }
 }
 
 export default new App();
