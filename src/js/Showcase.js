@@ -14,9 +14,9 @@ export class Showcase {
   constructor() {
     this.showcaseItem = null;
   }
-
+ 
   /**
-   * 
+   *
    * @param {*} option 
    */
   getTargetShowcase = (showcase) => {
