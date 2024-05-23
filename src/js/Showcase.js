@@ -7,7 +7,7 @@ import { DOM } from "./domElements";
 gsap.registerPlugin(Observer);
 
 /**
- *
+ * 
  * @param {*} option 
  */
 export class Showcase {
