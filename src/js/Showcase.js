@@ -20,7 +20,7 @@ export class Showcase {
    * @param {*} option 
    */
   getTargetShowcase = (showcase) => {
-    this.targetItem = document.querySelector(showcase);
+    this.targetItem = document.querySelector(showcase); 
   }
 
   /**
