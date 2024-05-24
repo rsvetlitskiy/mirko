@@ -3,11 +3,15 @@ import { Observer } from "gsap/Observer";
 import { Router } from "./Router";
 import { Snap } from "./snapscroll";
 import App from "./App";
+
 import { ShowcaseList } from "./ShowcaseList";
 import { Showcase } from "./Showcase";
 
 import {setDefault} from "./defaultStates";
 import {setShowcasesUrl} from "./showcaseUrls";
+import Lenis from 'lenis'
+
+import { DOM } from "./domElements";
 
 gsap.registerPlugin(Observer);
 
@@ -20,11 +24,28 @@ const showcase = new Showcase;
 window.onload = () => {
   setDefault();
   setShowcasesUrl();
-  showcaseList.snapInit();
 
   console.log(App.currentState); // !!!!!!!!
   //router.navigate("works");
 };
+
+
+const lenis = new Lenis({
+  infinite: true,
+  wrapper: DOM.showcases
+})
+
+lenis.on('scroll', (e) => {
+  console.log(e)
+});
+
+function raf(time) {
+  lenis.raf(time)
+  requestAnimationFrame(raf)
+};
+
+requestAnimationFrame(raf)
+
 
 /**
  * Routing
@@ -80,7 +101,7 @@ Observer.create({
 
     // Showcase list screen
     if (App.currentState == "showcaseList") {
-      showcaseList.snap("prev")
+      
     }
   },
 
@@ -92,7 +113,7 @@ Observer.create({
 
     // Showcase list screen
     if (App.currentState == "showcaseList") {
-      showcaseList.snap("next");
+     
     }
   },
 });

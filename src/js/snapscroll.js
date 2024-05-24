@@ -324,12 +324,6 @@ export class Snap {
     if (this.currentSnapIndex === 3) {
       this.aboutDisplay("hide");
     }
-
-    // About inner snap
-    if (this.currentSnapIndex === 3) {
-      
-
-    }
   }
 
   /**
