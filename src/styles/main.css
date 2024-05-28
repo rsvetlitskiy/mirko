@@ -6,50 +6,51 @@ html {
 }
 
 body {
-  height: 100svh;
-  width: 100svw;
-  overflow: hidden;
+  
 }
 
 .main {
-  height: 100svh;
-  width: 100svw;
-  overflow: hidden;
+
 }
 
 /* Home 
 ------------------------- */
 
-.work-item__cover-img {
-  /* visibility: hidden; */
+.work-cover_default {
+  visibility: hidden;
+}
+
+.work-cover_hover {
+
+}
+
+.work-item__info  {
+  opacity: 1;
 }
 
 .hero,
 .works,
 .about,
 .contacts {
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow: hidden;
+ 
 }
 
 
 .works {
-  top: 100svh;
-  z-index: 99; 
+  
 }
 
 .about {
-  top: 100svh;
+  
 }
 
 .contacts {
-  top: 100svh;
+  
 }
 
 .works-canvas {
   z-index: 50;
+  
 }
 
 canvas {

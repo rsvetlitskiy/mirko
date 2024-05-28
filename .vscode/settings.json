@@ -1,0 +1,16 @@
+{
+  "files.exclude": {
+    ".vercel": false,
+    ".vscode": false,
+    "node_modules": false,
+    ".gitattributes": false,
+    ".gitignore": false,
+    "entry-server.js": false,
+    "gsap-bonus.tgz": false,
+    "index.html": false,
+    "package-lock.json": false,
+    "package.json": false,
+    "server.js": false,
+    "vite.config.js": false
+  }
+}

@@ -1,9 +1,7 @@
 import { gsap } from "gsap";
 import { Observer } from "gsap/Observer";
-// import { InertiaPlugin } from "gsap/InertiaPlugin";
-import { DOM } from "./domElements";
+import { DOM } from "./dom";
 
-import App from "./App";
 
 gsap.registerPlugin(Observer);
 // gsap.registerPlugin(InertiaPlugin);

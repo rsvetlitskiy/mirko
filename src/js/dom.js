@@ -21,6 +21,7 @@ export const DOM = {
   works: document.querySelector(".works"),
   worksContent: document.querySelector(".works-content"),
   worksSections: document.querySelectorAll(".works-section"),
+  worksItem: document.querySelectorAll(".work-item"),
 
   // About
   about: document.querySelector(".about"),
