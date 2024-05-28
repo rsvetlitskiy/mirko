@@ -1,0 +1,31 @@
+html {
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.h100 {
+  font-size: 18px;
+  min-height: 0vw;
+}
+
+@media (min-width: 320px) {
+  .h100 {
+    font-size: calc(1.125rem + ((1vw - 3.2px) * 1.4151));
+  }
+}
+@media (min-width: 744px) {
+  .h100 {
+    font-size: 24px;
+  }
+}
+
+@media (min-width: 1921px) {
+  .h100 {
+    font-size: calc(1.5rem + ((1vw - 19.21px) * 0.626));
+  }
+}
+@media (min-width: 2560px) {
+  .h100 {
+    font-size: 28px;
+  }
+}
