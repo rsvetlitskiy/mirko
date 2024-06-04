@@ -1,0 +1,30 @@
+.showcase {
+  display: none;
+}
+
+.showcase_active {
+  
+}
+
+
+.showcase-details-info{
+  /* width: 0; */
+}
+
+.showcase-details {
+  /* height: 0svh; */
+}
+
+.showcase-gallery {
+  overflow: hidden;
+  /* height: 30svh; */
+}
+
+.showcase-link {
+  z-index: 200;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

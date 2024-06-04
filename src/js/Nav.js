@@ -23,7 +23,7 @@ class Nav {
     });
 
     tl.to(this.navItemsContainer, {
-      xPercent: 100,
+      xPercent: 110,
       opacity: 0,
     }, "lb");
 

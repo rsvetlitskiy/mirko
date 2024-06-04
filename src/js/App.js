@@ -104,7 +104,7 @@ window.addEventListener("load", (event) => {
     smoothTouch: true,
     touchMultiplier: 2,
     wheelMultiplier: 1,
-    infinite: true,
+    //infinite: true,
   });
 
   function onRaf(time) {
@@ -118,5 +118,5 @@ window.addEventListener("load", (event) => {
     //console.log(e)
   });
 
-  lenisShowcase.stop();
+
 });

@@ -1,9 +1,13 @@
 import AppState from "./AppState";
 import { gsap } from "gsap";
 import Nav from "./Nav";
+import ShowcaseNav from "./ShowcaseNav";
 import { Overlay } from "./PageTransition";
 
+
 const overlayEl = document.querySelector('.overlay');
+
+
 
 const overlay = new Overlay(overlayEl, {
     rows: 24,
@@ -24,6 +28,18 @@ class Showcase {
     const activeShowcase = this.showcaseList.querySelector(`[data-slug="${slug}"]`);
     activeShowcase.scrollIntoView();
   }
+
+  showActive(slug) {
+    const activeShowcase = this.showcaseList.querySelector(`[data-slug="${slug}"]`);
+    
+    gsap.set(activeShowcase, {
+      height: "auto",
+      visibility: "visible",
+      display: "flex"
+    });
+  }
+
+  
 
   /**
    * Disable moving to the no active showcases.
@@ -167,14 +183,14 @@ class Showcase {
 
     setTimeout(() => {
       this.showList();  // Show list of showcase
-      this.moveToActive(slug); // Scroll to active showcase
+      //this.moveToActive(slug); // Scroll to active showcase
+      this.showActive(slug)
     }, 1200);
 
-  
     Nav.showCloseBtn(); // Show close btn
 
     setTimeout(() => {
-      overlay.hide();
+      ShowcaseNav.show();
     }, 1300);
   }
 
@@ -182,17 +198,14 @@ class Showcase {
    * Hide favorite showcase
    */
   hideFavorite() {
+    ShowcaseNav.hide();
     overlay.show();
-    this.enableLinks(); // Enable links to all showcases
+    this.enableLinks();
 
     setTimeout(() => {
-      Nav.hideCloseBtn(); // Hide close btn
-      this.hideList(); // Hide list of showcase
+      Nav.hideCloseBtn();
+      this.hideList();
     }, 1200);
-
-    setTimeout(() => {
-      overlay.hide();
-    }, 1300);
   }
 }
 

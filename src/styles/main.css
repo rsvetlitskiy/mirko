@@ -1,7 +1,9 @@
 @import url("./typography.css");
 @import url("./pageTransition.css");
 @import url("./workPreview.css");
-@import url("./showcases.css");
+@import url("./showcasesNav.css");
+@import url("./showcasesList.css");
+@import url("./showcaseItem.css");
 
 html {
   -webkit-font-smoothing: antialiased;

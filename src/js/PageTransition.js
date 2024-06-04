@@ -1,5 +1,4 @@
 import { gsap } from "gsap";
-
 // Cell class definition
 class Cell {
   DOM = {
@@ -18,6 +17,7 @@ class Cell {
 
 // Overlay class definition
 export class Overlay {
+  
   DOM = {
     el: null,
   };
@@ -52,30 +52,39 @@ export class Overlay {
   show(customConfig = {}) {
     return new Promise((resolve) => {
       const defaultConfig = {
-        transformOrigin: "0 50%",
+        transformOrigin: "50% 50%",
         duration: 0.5,
-        ease: "none",
+        ease: "power2.in",
         stagger: {
           grid: [this.options.rows, this.options.columns],
           from: 0,
           each: 0.03,
-          ease: "power4",
+          ease: "power2.in",
         },
       };
       const config = Object.assign({}, defaultConfig, customConfig);
 
       gsap.set(this.DOM.el, { opacity: 1 });
-      gsap.fromTo(
+
+      const tl = gsap.timeline({
+        onComplete: () => {
+          this.hide()
+        }
+      });
+      
+      tl.fromTo(
         this.cells.flat().map((cell) => cell.DOM.el),
         {
           scaleX: 0,
           //opacity: 0,
+          //backgroundColor: "#f8f8f8",
           transformOrigin: config.transformOrigin,
         },
         {
           duration: config.duration,
           ease: config.ease,
           scale: 1.01,
+          //backgroundColor: "#fff",
           //opacity: 1,
           stagger: config.stagger,
           onComplete: resolve,
@@ -88,17 +97,17 @@ export class Overlay {
     return new Promise((resolve) => {
       // Default animation configuration
       const defaultConfig = {
-        transformOrigin: "0 50%",
+        transformOrigin: "100% 0%",
         // Duration for each cell animation
         duration: 0.5,
         // Ease for each cell animation
-        ease: "none",
+        ease: "power2.inOut",
         // Stagger object
         stagger: {
           grid: [this.options.rows, this.options.columns],
           from: 0,
           each: 0.03,
-          ease: "power4",
+          ease: "power2.inOut",
         },
       };
       const config = Object.assign({}, defaultConfig, customConfig);
@@ -113,6 +122,7 @@ export class Overlay {
           ease: config.ease,
           scaleX: 0,
           //opacity: 0,
+          //backgroundColor: "#f8f8f8",
           stagger: config.stagger,
           onComplete: resolve,
         }

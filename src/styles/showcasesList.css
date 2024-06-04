@@ -11,22 +11,21 @@
   scrollbar-width: none !important;
   -ms-overflow-style: none;
 }
- 
+
 .showcases::-webkit-scrollbar {
   display: none;
 }
- 
+
 .showcases {
   scrollbar-width: none !important;
- 
+
 
   -ms-overflow-style: none;
 }
- 
+
 .showcases::-webkit-scrollbar {
   display: none;
 }
-
 
 .showcase-details-info{
   /* width: 0; */
