@@ -1,31 +1,46 @@
 @import url("./typography.css");
+@import url("./pageTransition.css");
+@import url("./workPreview.css");
+@import url("./showcases.css");
 
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  
+html {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none;
+}
+ 
+html body::-webkit-scrollbar {
+  display: none;
+}
+ 
+html {
+  scrollbar-width: none !important;
+ 
+
+  -ms-overflow-style: none;
+}
+ 
+html body::-webkit-scrollbar {
+  display: none;
 }
 
-.main {
 
-}
 
 /* Home 
 ------------------------- */
 
-.work-cover_default {
-  visibility: hidden;
-}
+
 
 .work-cover_hover {
 
 }
 
 .work-item__info  {
-  opacity: 1;
+  opacity: 0;
 }
 
 .hero,
@@ -48,10 +63,7 @@ body {
   
 }
 
-.works-canvas {
-  z-index: 50;
-  
-}
+
 
 canvas {
   position: fixed;
@@ -68,6 +80,9 @@ canvas {
 
 /* Showcases
 ------------------------- */
+.staic-title-box {
+  opacity: 0.08;
+}
 
 .staic-title-box_about {
   visibility: hidden;
@@ -81,38 +96,3 @@ canvas {
   visibility: hidden;
 }
 
-.showcases {
-  width: 100%;
-  height: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  
-}
-
-.showcase {
-  
-}
-
-.showcase-details-info{
-  width: 0;
-}
-
-.showcase-details {
-  height: 0svh;
-}
-
-.showcase-gallery {
-  overflow: hidden;
-  height: 30svh;
-}
-
-.showcase-link {
-  z-index: 200;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}

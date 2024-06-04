@@ -23,7 +23,7 @@ export class ShowcaseList {
 
   /**
    * Display or hide showcase
-   * @param { string } option
+   * @param { string } option - show or hide
    */
   display(option) {
     const isShow = option === "show";

@@ -1,16 +1,16 @@
 {
   "files.exclude": {
-    ".vercel": false,
-    ".vscode": false,
-    "node_modules": false,
-    ".gitattributes": false,
-    ".gitignore": false,
-    "entry-server.js": false,
-    "gsap-bonus.tgz": false,
-    "index.html": false,
-    "package-lock.json": false,
-    "package.json": false,
-    "server.js": false,
-    "vite.config.js": false
+    ".vercel": true,
+    ".vscode": true,
+    "node_modules": true,
+    ".gitattributes": true,
+    ".gitignore": true,
+    "entry-server.js": true,
+    "gsap-bonus.tgz": true,
+    "index.html": true,
+    "package-lock.json": true,
+    "package.json": true,
+    "server.js": true,
+    "vite.config.js": true
   }
 }
