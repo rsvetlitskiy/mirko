@@ -8,7 +8,7 @@ import Lenis from "lenis";
 import { Canvas } from "./Canvas";
 import Nav from "./Nav";
 import Showcase from "./Showcase";
-//import { Overlay } from "./PageTransition";
+//import { Overlay } from "./PageTransition"; 
 
 gsap.registerPlugin(ScrollTrigger);
 

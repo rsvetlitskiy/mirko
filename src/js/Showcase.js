@@ -7,8 +7,6 @@ import { Overlay } from "./PageTransition";
 
 const overlayEl = document.querySelector('.overlay');
 
-
-
 const overlay = new Overlay(overlayEl, {
     rows: 24,
     columns: 1
@@ -38,8 +36,6 @@ class Showcase {
       display: "flex"
     });
   }
-
-  
 
   /**
    * Disable moving to the no active showcases.
@@ -80,55 +76,7 @@ class Showcase {
     gsap.set(this.showcaseList, { height: "0", });
   }
 
-  /**
-   * Animation before display showcase.
-   * @returns {any}
-   */
-  proload(option) {
-    const isNext= option === "next";
-    const isBack= option === "back";
-
-    let tl = gsap.timeline({
-      defaults: {
-        duration: 1.5,
-        ease: "power2.inOut",
-        //rotate: "5deg"
-      },
-      onComplete: () => {},
-    });
-
-    if (isNext) {
-      tl.to(".works-canvas", {
-        opacity: 0,
-        scaleY: 1.4,
-        //rotate: "5deg"
-      });
   
-      gsap.to(".staic-title", {
-        duration: 1.5,
-        ease: "power2.inOut",
-        opacity: 0,
-        y: "20vh",
-        scaleY: 1.4,
-      });
-    }
-
-    if (isBack) {
-      tl.to(".works-canvas", {
-        opacity: 1,
-        scaleY: 1,
-        //rotate: "5deg"
-      }, 1.4);
-  
-      gsap.to(".staic-title", {
-        duration: 1.5,
-        ease: "power2.inOut",
-        opacity: 1,
-        y: "20vh",
-        scaleY: 1,
-      }, 1.4);
-    }
-  }
 
   /**
    * Set default all shiwcases view.
