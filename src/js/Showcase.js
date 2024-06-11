@@ -76,8 +76,6 @@ class Showcase {
     gsap.set(this.showcaseList, { height: "0", });
   }
 
-  
-
   /**
    * Set default all shiwcases view.
    * @param {string} ption - "showcase"" or "preview".
