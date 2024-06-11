@@ -1,90 +1,128 @@
+import Init from "./Init";
+import { DOM } from "./dom";
+import AppState from "./AppState";
+import { Router } from "./Router";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
 import { Canvas } from "./Canvas";
-import { Router } from "./Router";
-import {setShowcasesUrl} from "./showcaseUrls";
-
-import { DOM } from "./dom";
+import Lenis from "lenis";
+import { Showcase } from "./Showcase";
+import { Gallery } from "./Gallery";
 
 gsap.registerPlugin(ScrollTrigger);
 
-
+// Init
 window.addEventListener("load", (event) => {
-  setShowcasesUrl();
-});
+  Init.app();
 
-/**
- * Routing
- */
-const router = new Router({
-  mode: "hash",
-  root: "/",
-});
+  const canvas = new Canvas();
+  canvas.curtains.disableDrawing();
 
-// About
-router.add(/about/, () => {
-  //App.setState("about");
+  // Showcase details
+  const showcase = new Showcase();
 
-});
+  // Showcase gallery
+  const gallery = new Gallery();
 
-// Contacts
-router.add(/contact/, () => {
-  //App.setState("contact");
+  // Routing
+  const router = new Router({
+    mode: "hash",
+    root: "/",
+  });
+
+  router.add(/works\/(.*)/, (slug) => {
+    AppState.set("showcase");
+    lenisHome.stop();
+    lenisShowcase.start();
+
+    showcase.showFeatured(slug);
+    gallery.init();
+  });
+
+  router.add(/home/, () => {
+    AppState.set("home");
+    showcase.hideFeatured();
+    lenisHome.start();
+  });
+
+  router.add(/about/, () => {
+    AppState.set("about");
+  });
+
+  router.add(/contact/, () => {
+    AppState.set("contact");
+  });
+
+  router.add(/works/, () => {
+    AppState.set("works");
+    //lenisHome.stop();
+  });
+
+  // Hide showcase
+  DOM.closeShowcaseBtn.addEventListener("click", (e) => {
+    router.navigate("home");
+  });
 
 
-});
+  const lenisHome = new Lenis({
+    duration: 2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    direction: "vertical",
+    gestureDirection: "vertical",
+    smooth: true,
+    mouseMultiplier: 1,
+    smoothTouch: true,
+    touchMultiplier: 2,
+    wheelMultiplier: 1,
+    infinite: false,
+  });
 
-// Showcase details
-router.add(/works\/(.*)/, (slug) => {
-  //App.setState("showcase");
+  lenisHome.on("scroll", ({ scroll }) => {
+    canvas.curtains.updateScrollValues(0, scroll);
+    canvas.curtains.needRender();
+    //console.log(scroll);
+  });
+  
+  gsap.ticker.add((time) => {
+    lenisHome.raf(time * 1000);
+  });
 
-  console.log(`Showcase: ${slug}`);
-});
+  const homeTl = gsap.timeline({});
 
-// Showcases list
-router.add(/works/, () => {
-  //showcaseList.display("show");
-  //App.setState("showcaseList");
+  homeTl.to(DOM.heroImage, {
+    opacity: 0,
+    scrollTrigger: {
+      trigger: DOM.hero,
+      scrub: 1,
+      // markers: 1,
+      start: "top top",
+      end: "bottom 50%",
+    },
+  });
 
-  console.log("Works");
-});
+  // Showcases
+  const lenisShowcase = new Lenis({
+    wrapper: DOM.showcaseList,
+    duration: 2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    direction: "vertical",
+    gestureDirection: "vertical",
+    smooth: true,
+    mouseMultiplier: 1,
+    smoothTouch: true,
+    touchMultiplier: 2,
+    wheelMultiplier: 1,
+    //infinite: true,
+  });
 
+  function onRaf(time) {
+    lenisShowcase.raf(time);
+    requestAnimationFrame(onRaf);
+  }
 
-const canvas = new Canvas();
-canvas.curtains.disableDrawing();
+  requestAnimationFrame(onRaf);
 
-const lenisHome = new Lenis({
-  duration: 2,
-  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-  direction: 'vertical',
-  gestureDirection: 'vertical',
-  smooth: true,
-  mouseMultiplier: 1,
-  smoothTouch: false,
-  touchMultiplier: 2,
-  wheelMultiplier: 1,
-  infinite: false,
-});
-
-lenisHome.on("scroll", ({ scroll }) => {
-  canvas.curtains.updateScrollValues(0, scroll);
-  canvas.curtains.needRender();
-});
-
-gsap.ticker.add((time) => {
-  lenisHome.raf(time * 1000);
-});
-
-const homeTimeline = gsap.timeline({});
-
-homeTimeline.to(DOM.heroImage, {
-  opacity: 0,
-  scrollTrigger: {
-    trigger: DOM.hero,
-    scrub: 1,
-    markers: 1,
-    start: "top top",
-    end: "bottom 50%",
-  },
+  lenisShowcase.on("scroll", (e) => {
+    //console.log(e)
+  });
 });

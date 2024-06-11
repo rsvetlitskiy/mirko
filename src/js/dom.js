@@ -2,6 +2,8 @@
  * Define DOM elements
  */
 
+import { update } from "three/examples/jsm/libs/tween.module.js"
+
 export const DOM = {
   // Nav
   navItemHome: document.querySelector(".nav-item_home"),
@@ -21,7 +23,7 @@ export const DOM = {
   works: document.querySelector(".works"),
   worksContent: document.querySelector(".works-content"),
   worksSections: document.querySelectorAll(".works-section"),
-  worksItem: document.querySelectorAll(".work-item"),
+  workItem: document.querySelectorAll(".work-item"),
 
   // About
   about: document.querySelector(".about"),
@@ -35,14 +37,19 @@ export const DOM = {
   // Titles
   heroTitle: document.querySelector(".staic-title-box_hero"),
   coantactsContent: document.querySelector(".contacts-content"),
-
   worksItemCover: document.querySelectorAll(".work-item__cover"),
 
-  // Showcases
-  showcases: document.querySelector(".showcases"),
-  showcasesContent: document.querySelector(".showcases-content"),
+  showcaseList: document.querySelector(".showcases"), // List of showcases
+
+  showcasesContent: document.querySelector(".showcases-content"), 
   showcasesCollection: document.querySelector(".showcases-collection"),
 
   // Showcase
-  showcaseItem: document.querySelectorAll(".showcase"),
+  showcaseItem: document.querySelectorAll(".showcase"), // Showcase elements
+  
+  showcaseDetails: document.querySelectorAll(".showcase-details"),
+  showcaseDetailsInfo: document.querySelectorAll(".showcase-details-info"),
+  showcaseGallery: document.querySelectorAll(".showcase-gallery"),
+  
+  closeShowcaseBtn: document.querySelector(`[data-action="close-showcase"]`),
 }

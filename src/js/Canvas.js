@@ -29,7 +29,6 @@ export class Canvas {
     this.createPlanes()
   }
 
-
   createCurtains() {
     this.curtains = new Curtains({
       container: 'canvas',
@@ -41,9 +40,9 @@ export class Canvas {
   setupCurtains() {
     this.curtains
       .onRender(() => {
-        // update our planes deformation
         this.scrollEffect = this.curtains.lerp(this.scrollEffect, 0, 0.085)
       })
+  
       .onScroll(() => {
         const delta = this.curtains.getScrollDeltas()
         delta.y = -delta.y
@@ -63,6 +62,7 @@ export class Canvas {
           )
         }
       })
+
       .onContextLost(() => {
         this.curtains.restoreContext()
       })
@@ -83,14 +83,13 @@ export class Canvas {
       },
     }
 
-    // add our planes and handle them
+
     for (let i = 0; i < this.DOM.planeElements.length; i++) {
       const plane = new Plane(this.curtains, this.DOM.planeElements[i], params)
       this.planes.push(plane)
       this.handlePlanes(plane)
+      //this.handleUser(plane)
     }
-
-    this.DOM.heroWebGlPlane = this.planes[0]
   }
 
   handlePlanes(plane) {
@@ -104,5 +103,11 @@ export class Canvas {
       .onRender(() => {
         plane.uniforms.scrollEffect.value = this.scrollEffect
       });
+      
+  }
+
+  handleUser(plane) {
+    //this.planes[1].scale.x = 2.2
+    //console.log(this.planes);
   }
 }

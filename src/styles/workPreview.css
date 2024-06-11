@@ -1,0 +1,12 @@
+.works-canvas {
+  z-index: 50;
+}
+
+.works-canvas {
+  z-index: 50;
+  overflow: hidden;
+}
+
+.work-item__cover {
+  opacity: 0;
+}

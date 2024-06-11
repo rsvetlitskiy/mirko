@@ -1,7 +1,9 @@
 import { gsap } from "gsap";
 import { Observer } from "gsap/Observer";
-import { DOM } from "./dom";
+// import { InertiaPlugin } from "gsap/InertiaPlugin";
+import { DOM } from "../../../../mirko/mirko/src/js/dom";
 
+import App from "./App";
 
 gsap.registerPlugin(Observer);
 // gsap.registerPlugin(InertiaPlugin);
@@ -23,7 +25,7 @@ export class ShowcaseList {
 
   /**
    * Display or hide showcase
-   * @param { string } option - show or hide
+   * @param { string } option
    */
   display(option) {
     const isShow = option === "show";
