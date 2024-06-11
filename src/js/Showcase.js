@@ -3,46 +3,48 @@ import { gsap } from "gsap";
 import Nav from "./Nav";
 import ShowcaseNav from "./ShowcaseNav";
 import { Overlay } from "./PageTransition";
-
+import { DOM } from "./dom";
 
 const overlayEl = document.querySelector('.overlay');
 
 const overlay = new Overlay(overlayEl, {
-    rows: 24,
-    columns: 1
+  rows: 24,
+  columns: 1,
+  duration: 0.7,
+  each: 0.02
 });
 
-class Showcase {
+export class Showcase {
   constructor() {
-    this.showcaseList = document.querySelector(".showcases");
+    this.activeShowcase;
+    this.activeShowcaseSlug;
+    this.activeClassName = "showcase_active";
   }
 
   /**
-   * Scroll to active showcase.
-   * @param {any} slug - Target data-slug of active showcase
+   * Set active showcase
+   * @param {any} slug
    * @returns {any}
    */
-  moveToActive(slug) {
-    const activeShowcase = this.showcaseList.querySelector(`[data-slug="${slug}"]`);
-    activeShowcase.scrollIntoView();
-  }
-
-  showActive(slug) {
-    const activeShowcase = this.showcaseList.querySelector(`[data-slug="${slug}"]`);
-    
-    gsap.set(activeShowcase, {
-      height: "auto",
-      visibility: "visible",
-      display: "flex"
-    });
+  setActive(slug) {
+    this.activeShowcaseSlug = slug;
+    this.activeShowcase = DOM.showcaseList.querySelector(`[data-slug="${this.activeShowcaseSlug}"]`);
+    this.activeShowcase.classList.toggle(this.activeClassName);
   }
 
   /**
-   * Disable moving to the no active showcases.
+   * Reset active showcase
+   * @returns {any}
+   */
+  resetActive() {
+    DOM.showcaseItem.forEach(e => e.classList.toggle(this.activeClassName));
+  }
+
+  /**
+   * Disable moving to the no active showcase.
    */
   disableLinks() {
-    const showcaseLink = ".showcase-link";
-    const links = document.querySelectorAll(showcaseLink);
+    const links = document.querySelectorAll(".showcase-link");
     gsap.set(links, {
       height: 0,
     });
@@ -52,107 +54,58 @@ class Showcase {
    * Enable moving to the no active showcases.
    */
   enableLinks() {
-    const showcaseLink = ".showcase-link";
-    const links = document.querySelectorAll(showcaseLink);
+    const links = document.querySelectorAll(".showcase-link");
     gsap.set(links, {
       height: "100%",
     });
   }
 
   /**
-   * Show favorite showcase.
-   * @param {string} slug - Active showcase data-slug.
+   * Show featured showcase
+   * @param {any} slug - data-slug of active showcase
    * @returns {any}
    */
-  showList() {
-    gsap.set(this.showcaseList, { height: "100svh", });
-  }
-
-  /**
-   * Hide favorite showcase.
-   * @returns {any}
-   */
-  hideList() {
-    gsap.set(this.showcaseList, { height: "0", });
-  }
-
-  /**
-   * Set default all shiwcases view.
-   * @param {string} ption - "showcase"" or "preview".
-   * @returns {any}
-   */
-  setViewForAll(option) {
-    const isShowcase = option === "showcase";
-    const isPreview = option === "preview";
-    const showcaseDetails =  ".showcase-details";
-    const showcaseInfo =  ".showcase-details-info";
-    const showcaseGallery =  ".showcase-gallery";
-
-    // Hide showcase details
-    if (isPreview) {
-      gsap.set(showcaseDetails, {
-        height: "0svh",
-      });
-
-      gsap.set(showcaseInfo, {
-        width: "0",
-      });
-
-      gsap.set(".showcase-gallery", {
-        height: "30svh",
-      });
-    }
-
-    // Show showcase details
-    if (isShowcase) {
-      gsap.set(showcaseDetails, {
-        height: "40svh",
-      });
-
-      gsap.set(showcaseInfo, {
-        width: "100%",
-      });
-
-      gsap.set(showcaseGallery, {
-        height: "60svh",
-      });
-    }
-  }
-
-  /**
-   * Show favorite showcase
-   * @param {string} slug - showcase data-slug 
-   */
-  showFavorite(slug) {
+  showFeatured(slug) {
+    this.setActive(slug);
+    this.disableLinks();
     overlay.show();
-    this.disableLinks(); // Disable links to all showcases
+    Nav.showCloseBtn();
 
-    setTimeout(() => {
-      this.showList();  // Show list of showcase
-      //this.moveToActive(slug); // Scroll to active showcase
-      this.showActive(slug)
-    }, 1200);
+    // Animation timeline
+    const tl = gsap.timeline({delay: 1.3});
 
-    Nav.showCloseBtn(); // Show close btn
+    // Display showcase
+    tl.set(this.activeShowcase, {
+      height: "auto",
+      display: "flex",
+      marginBottom: 0,
+    });
 
-    setTimeout(() => {
-      ShowcaseNav.show();
-    }, 1300);
+    // Display list
+    tl.set(DOM.showcaseList, {height: "100svh"});
   }
 
   /**
-   * Hide favorite showcase
+   * Hide featured showcase
    */
-  hideFavorite() {
-    ShowcaseNav.hide();
-    overlay.show();
+  hideFeatured() {
+    this.resetActive();
     this.enableLinks();
 
-    setTimeout(() => {
-      Nav.hideCloseBtn();
-      this.hideList();
-    }, 1200);
+    overlay.show();
+    Nav.hideCloseBtn();
+
+    // Animation timeline
+    const tl = gsap.timeline({delay: 1.2});
+
+    // Hide showcase
+    tl.set(DOM.showcaseItem, {
+      height: "0",
+      display: "none",
+      marginBottom: "8svh",
+    });
+
+    // Hide list 
+    tl.set(DOM.showcaseList, {height: "0"});
   }
 }
-
-export default new Showcase();

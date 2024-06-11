@@ -4,11 +4,10 @@ import AppState from "./AppState";
 import { Router } from "./Router";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
 import { Canvas } from "./Canvas";
-import Nav from "./Nav";
-import Showcase from "./Showcase";
-//import { Overlay } from "./PageTransition"; 
+import Lenis from "lenis";
+import { Showcase } from "./Showcase";
+import { Gallery } from "./Gallery";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,6 +18,12 @@ window.addEventListener("load", (event) => {
   const canvas = new Canvas();
   canvas.curtains.disableDrawing();
 
+  // Showcase details
+  const showcase = new Showcase();
+
+  // Showcase gallery
+  const gallery = new Gallery();
+
   // Routing
   const router = new Router({
     mode: "hash",
@@ -28,12 +33,15 @@ window.addEventListener("load", (event) => {
   router.add(/works\/(.*)/, (slug) => {
     AppState.set("showcase");
     lenisHome.stop();
-    Showcase.showFavorite(slug);
+    lenisShowcase.start();
+
+    showcase.showFeatured(slug);
+    gallery.init();
   });
 
   router.add(/home/, () => {
     AppState.set("home");
-    Showcase.hideFavorite();
+    showcase.hideFeatured();
     lenisHome.start();
   });
 
@@ -72,7 +80,7 @@ window.addEventListener("load", (event) => {
   lenisHome.on("scroll", ({ scroll }) => {
     canvas.curtains.updateScrollValues(0, scroll);
     canvas.curtains.needRender();
-    console.log(scroll);
+    //console.log(scroll);
   });
   
   gsap.ticker.add((time) => {
@@ -94,7 +102,7 @@ window.addEventListener("load", (event) => {
 
   // Showcases
   const lenisShowcase = new Lenis({
-    wrapper: DOM.showcases,
+    wrapper: DOM.showcaseList,
     duration: 2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     direction: "vertical",
@@ -117,6 +125,4 @@ window.addEventListener("load", (event) => {
   lenisShowcase.on("scroll", (e) => {
     //console.log(e)
   });
-
-
 });

@@ -26,6 +26,8 @@ export class Overlay {
   options = {
     rows: 2,
     columns: 2,
+    duration: 1,
+    each: 0.03,
   };
 
   constructor(DOM_el, customOptions) {
@@ -53,12 +55,12 @@ export class Overlay {
     return new Promise((resolve) => {
       const defaultConfig = {
         transformOrigin: "50% 50%",
-        duration: 0.5,
+        duration: this.options.duration,
         ease: "power2.in",
         stagger: {
           grid: [this.options.rows, this.options.columns],
           from: 0,
-          each: 0.03,
+          each: this.options.each,
           ease: "power2.in",
         },
       };
@@ -99,14 +101,14 @@ export class Overlay {
       const defaultConfig = {
         transformOrigin: "100% 0%",
         // Duration for each cell animation
-        duration: 0.5,
+        duration: this.options.duration,
         // Ease for each cell animation
         ease: "power2.inOut",
         // Stagger object
         stagger: {
           grid: [this.options.rows, this.options.columns],
           from: 0,
-          each: 0.03,
+          each: this.options.each,
           ease: "power2.inOut",
         },
       };

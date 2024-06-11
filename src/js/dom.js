@@ -39,17 +39,17 @@ export const DOM = {
   coantactsContent: document.querySelector(".contacts-content"),
   worksItemCover: document.querySelectorAll(".work-item__cover"),
 
-  // Showcases list container
-  showcases: document.querySelector(".showcases"), // Wrapper
-  showcasesContent: document.querySelector(".showcases-content"), // Inner wrapper
-  showcasesCollection: document.querySelector(".showcases-collection"), //?????
+  showcaseList: document.querySelector(".showcases"), // List of showcases
+
+  showcasesContent: document.querySelector(".showcases-content"), 
+  showcasesCollection: document.querySelector(".showcases-collection"),
 
   // Showcase
-  showcaseItem: document.querySelectorAll(".showcase"),
+  showcaseItem: document.querySelectorAll(".showcase"), // Showcase elements
+  
   showcaseDetails: document.querySelectorAll(".showcase-details"),
   showcaseDetailsInfo: document.querySelectorAll(".showcase-details-info"),
   showcaseGallery: document.querySelectorAll(".showcase-gallery"),
-  showcaseLink: ".showcase-link",
-
+  
   closeShowcaseBtn: document.querySelector(`[data-action="close-showcase"]`),
 }

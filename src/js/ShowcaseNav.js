@@ -1,23 +1,9 @@
 import { gsap } from "gsap";
-import { add } from "three/examples/jsm/libs/tween.module.js";
 
 class ShowcaseNav {
   constructor() {
     this.nextBtn = document.querySelector(".nav-btn_next");
     this.prevBtn = document.querySelector(".nav-btn_prev");
-  }
-
-  /**
-   * Default state
-   */
-  defaultState() {
-    gsap.set(this.nextBtn, {
-      xPercent: 120,
-    });
-
-    gsap.set(this.prevBtn, {
-      xPercent: -120,
-    });
   }
 
   /**

@@ -8,11 +8,19 @@
 	position: fixed;
 	pointer-events: none;
 	opacity: 0;
-	--columns: 20;
+	--columns: 24;
 	grid-template-columns: repeat(var(--columns),1fr);
 }
 
 .overlay div {
 	background: var(--bg100);
-  /* background: #000; */
+	z-index: 20;
+  /* background: #d2d2d2; */
+	
+}
+
+div.overlay__blend {
+	z-index: 10;
+	background: #00ff6e;
+	mix-blend-mode: saturation;
 }
